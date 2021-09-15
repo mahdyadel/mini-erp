@@ -61,9 +61,9 @@ class Product extends Model
         return Carbon::parse($value)->diffForHumans();
     }
 
-    // public function getPriceAttribute($value){
+    public function getPriceAttribute($value){
 
-    //     return money_format('$ %i' , $value);
+        return money_format('$ %i' , $value);
 
-    // }
+    }
 }
