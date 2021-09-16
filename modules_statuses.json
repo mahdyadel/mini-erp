@@ -1,0 +1,7 @@
+{
+    "Sales": true,
+    "Stock": true,
+    "Invocing": true,
+    "Accounting": true,
+    "Product": true
+}

@@ -1,0 +1,13 @@
+{
+    "name": "Invocing",
+    "alias": "invocing",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Invocing\\Providers\\InvocingServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

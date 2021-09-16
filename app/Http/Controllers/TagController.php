@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\Tag\CreateTagRequest;
+use App\Http\Requests\Tag\UpdateTagRequest;
+use App\Tag;
 
 class TagController extends Controller
 {
@@ -13,7 +16,9 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::orderBy('id' , 'desc')->paginate(10);
+
+        return view('tags.index' , compact('tags'));
     }
 
     /**
@@ -23,7 +28,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('tags.create');
     }
 
     /**
@@ -32,9 +37,9 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTagRequest $request)
     {
-        //
+        return $request->store();
     }
 
     /**
@@ -45,7 +50,10 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        $tag = Tag::findOrFail($id);
+
+        return view('tags.show' , compact('tag'));
     }
 
     /**
@@ -56,7 +64,9 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tag = Tag::findOrFail($id);
+
+        return view('tags.edit' , compact('tag'));
     }
 
     /**
@@ -66,9 +76,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTagRequest $request, $id)
     {
-        //
+        return $request->update($id);
     }
 
     /**
@@ -77,8 +87,13 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy($id)
     {
-        //
+        $tag = Tag::findOrFail($id);
+
+        $tag->delete();
+
+        return redirect()->route('tags.index');
     }
 }
